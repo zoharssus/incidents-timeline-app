@@ -1,0 +1,43 @@
+.low {
+    color: grey;
+    background: lightslategray;
+    border-radius: 5px;
+}
+
+.medium {
+    color: orange;
+    background: lightgoldenrodyellow;
+    border-radius: 5px;
+}
+
+.high {
+    color: darkred;
+    background: lightcoral;
+    border-radius: 5px;
+}
+
+.critical {
+    color: white;
+    background: dimgray;
+    border-radius: 5px;
+}
+
+.open {
+    color: darkblue;
+    background: lightsteelblue;
+    border-radius: 5px;
+}
+
+.closed {
+    color: lightseagreen;
+    background: lightgreen;
+    border-radius: 5px;
+}
+
+.country {
+    width: 30px;
+    height: 30px;
+    border-radius: 25px;
+}
+
+

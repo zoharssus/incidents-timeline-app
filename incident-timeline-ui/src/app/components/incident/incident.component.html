@@ -1,0 +1,47 @@
+<div>
+    <table>
+        <tr>
+            <td class="picklist-title" *ngFor="let prop of incidentProps">
+                {{prop}}
+            </td>
+            <td>
+                Created
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <select
+                    #prioritySelect
+                    (change)="updatePriority(prioritySelect.value)">
+                    <option *ngFor="let option of priorityOptions" [value]="option">{{option}}</option>
+                </select>
+            </td>
+            <td>
+                <select
+                    #statusSelect
+                    (change)="updateStatus(statusSelect.value)">
+                    <option *ngFor="let option of statusOptions" [value]="option">{{option}}</option>
+                </select>
+            </td>
+            <td>
+                <select
+                    #countrySelect
+                    (change)="updateCountry(countrySelect.value)">
+                    <option *ngFor="let option of countryOptions" [value]="option">{{option}}</option>
+                </select>
+            </td>
+            <td>
+                {{createdAt}}
+            </td>
+            
+        </tr>
+    </table>
+</div>
+<div>
+    Timeline
+    <div *ngFor="let operation of operations">
+        <div><strong>{{operation?.title}}</strong></div>
+        <div>{{operation?.description}}</div>
+        <div>{{getTimeSince(operation?.description)}}</div>
+    </div>
+</div>
