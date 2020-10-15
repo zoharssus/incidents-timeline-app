@@ -1,0 +1,16 @@
+{
+  "name": "cyber-proof-test",
+  "version": "1.0.0",
+  "description": "Incident Timeline Project",
+  "main": "app.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "author": "Zohar Suslovich <zoharsus@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "countries-list": "^2.5.6",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.2"
+  }
+}

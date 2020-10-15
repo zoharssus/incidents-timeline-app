@@ -42,6 +42,6 @@
     <div *ngFor="let operation of operations">
         <div><strong>{{operation?.title}}</strong></div>
         <div>{{operation?.description}}</div>
-        <div>{{getTimeSince(operation?.description)}}</div>
+        <div>{{getTimeSince(operation?.date)}}</div>
     </div>
 </div>

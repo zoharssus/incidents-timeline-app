@@ -30,8 +30,9 @@ export class IncidentComponent implements OnInit {
   incidentProps = ['Priority', 'Status', 'Country'];
   priorityOptions = ['Low', 'Medium', 'High', 'Critical'];
   statusOptions = ['Open', 'Closed'];
-  
   countries;
+  countryOptions;
+
   constructor(
     private incidentService: IncidentService,
     private router: Router, 
@@ -48,16 +49,17 @@ export class IncidentComponent implements OnInit {
   getIncidentData(id) {
     this.incidentService.getIncident(id)
     .subscribe((incidentData : any) => {
-      const {status, priority, country, operations} = incidentData;
+      const {status, priority, country, operations, createdAt} = incidentData;
       this.status = status;
       this.priority = priority;
       this.country = country;
-      
+      this.createdAt = createdAt;
+      this.operations = operations;
+
       this.originalStatus = status;
       this.originalPriority = priority;
       this.originalCountry = country;
 
-      this.operations = operations;
     });
   }
 
@@ -123,8 +125,25 @@ export class IncidentComponent implements OnInit {
 
   loadCountriesEmojies() {
     this.incidentService.loadAllCountries()
-    .subscribe(countriesData => {
+    .subscribe((countriesData: any[]) => {
       this.countries = countriesData;
+      this.countryOptions = countriesData.map(country => country.countryName.toUpperCase());
     });
+  }
+
+  getTimeSince(dateToCheck) {
+    const now = new Date().getTime();
+    const difference = now - new Date(dateToCheck).getTime();
+    if (difference < 1000 * 60) {
+      return 'A few seconds ago'
+    } else if (difference < 1000 * 60 * 60) {
+      return `${difference / 1000 / 60} minutes ago`;
+    } else if (difference < 1000 * 60 * 60 * 24) {
+      return `${difference / 1000 / 60 / 60} hours ago`;
+    } else if (difference < 1000 * 60 * 60 * 24 * 30) {
+      return `${difference / 1000 * 60 * 60 * 24} days ago`;
+    } else if (difference < 1000 * 60 * 60 * 24 * 365) {
+      return `${difference / 1000 * 60 * 60 * 24 * 30} months ago`;
+    } else return `${difference / 1000 * 60 * 60 * 24 * 365} years ago`;
   }
 }
